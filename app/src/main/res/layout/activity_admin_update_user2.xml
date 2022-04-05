@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bookshelf"
+    android:layout_alignParentEnd="false"
+    android:layout_centerVertical="false"
+    android:background="@drawable/light_background"
     android:orientation="vertical"
-    tools:context=".CreateAccount">
+    tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck">
 
-    <TextView
-        android:id="@+id/txtWelcome"
-        android:layout_width="243dp"
-        android:layout_height="91dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="156dp"
-        android:fontFamily="@font/candal"
-        android:text="@string/CrateAccount"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <!-- Tool Bar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_light"
+        android:elevation="10dp"
+        app:navigationIcon="@drawable/ic_home">
+        <!-- page title -->
+        <TextView
+            android:id="@+id/txtAdminCreateUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/btnUpdateUser"
+            android:textColor="@color/dark_gray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <!-- message icon -->
+        <ImageButton
+            android:id="@+id/btnMessageIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/ic_message_icon"
+            android:contentDescription="@string/imgMessageIcon"
+            android:minWidth="24dp"
+            android:minHeight="24dp"
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/labelUserId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/labelUserId"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editUserId"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EditUserId"
@@ -46,10 +66,9 @@
         android:inputType="textPersonName"
         android:textColor="@color/dark_gray"
         android:textColorHighlight="@color/dark_blue"
-        android:textColorHint="@color/dark_gray"
         android:textColorLink="@color/dark_gray"
         android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 
     <TextView
@@ -59,58 +78,27 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:text="@string/labelUserPw"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editUserPw"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EditUserPw"
         android:importantForAutofill="no"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:textColor="@color/dark_gray"
-        android:textColorHighlight="@color/white"
-        android:textColorHint="@color/dark_gray"
+        android:textColorHighlight="@color/dark_blue"
         android:textColorLink="@color/dark_gray"
         android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/labelUserReneterPw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/labelUserRenterPw"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editUserRePw"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/EditUserRePw"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:textColor="@color/dark_gray"
-        android:textColorHighlight="@color/white"
-        android:textColorHint="@color/dark_gray"
-        android:textColorLink="@color/dark_gray"
-        android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/labelUserFname"
@@ -119,17 +107,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:text="@string/labelUserFName"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editUserFname"
-        android:layout_width="370dp"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EditUserFName"
@@ -137,10 +124,9 @@
         android:inputType="textPersonName"
         android:textColor="@color/dark_gray"
         android:textColorHighlight="@color/dark_blue"
-        android:textColorHint="@color/dark_gray"
         android:textColorLink="@color/dark_gray"
         android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 
     <TextView
@@ -150,17 +136,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:text="@string/labelUserLName"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editUserLname"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EditUserLName"
@@ -168,11 +153,9 @@
         android:inputType="textPersonName"
         android:textColor="@color/dark_gray"
         android:textColorHighlight="@color/dark_blue"
-        android:textColorHint="@color/dark_gray"
         android:textColorLink="@color/dark_gray"
         android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck" />
-
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 
     <TextView
@@ -182,17 +165,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:text="@string/labelUserAdr"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editUserAdr"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EditUserAdr"
@@ -200,10 +182,9 @@
         android:inputType="textPersonName"
         android:textColor="@color/dark_gray"
         android:textColorHighlight="@color/dark_blue"
-        android:textColorHint="@color/dark_gray"
         android:textColorLink="@color/dark_gray"
         android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
 
     <TextView
@@ -213,17 +194,16 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:text="@string/labelUserAge"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editUserAge"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/border_btn_white"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/EditUserAge"
@@ -231,23 +211,24 @@
         android:inputType="textPersonName"
         android:textColor="@color/dark_gray"
         android:textColorHighlight="@color/dark_blue"
-        android:textColorHint="@color/dark_gray"
         android:textColorLink="@color/dark_gray"
         android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck" />
-
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="165dp"
-        android:layout_height="68dp"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/btnAdminUpdateUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="80dp"
-        android:background="#000000"
-        android:text="@string/register"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/border_btn_white"
+        android:backgroundTint="@color/bright_blue"
+        android:elevation="4dp"
+        android:padding="10dp"
+        android:text="@string/btnUpdateUser"
         android:textColor="@color/white"
-        android:textSize="24sp" />
-
-
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="10dp" />
 </LinearLayout>

@@ -6,4 +6,17 @@
         <item name="colorPrimaryDark">#474846</item>
         <item name="colorAccent">#2c5bf2</item>
     </style>
+    <style name="myPrefPopupTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name = "android:backgroundDimEnabled">true</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+    <style name="myPopupTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name = "android:backgroundDimEnabled">true</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
 </resources>

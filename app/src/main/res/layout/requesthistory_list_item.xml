@@ -65,8 +65,9 @@
 
         <ImageView
             android:id="@+id/imgAorD"
-            android:layout_width="109dp"
-            android:layout_height="70dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

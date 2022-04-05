@@ -29,8 +29,8 @@ public class CurrentLoan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_loan);
 
-//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//        String userId = sharedPreferences.getString("userId", "NA");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String userId = sharedPreferences.getString("userId", "NA");
 
         ImageButton go_back = findViewById(R.id.btnBack);
         BottomNavigationView bottom_menu = findViewById(R.id.bottom_menu);
@@ -57,7 +57,7 @@ public class CurrentLoan extends AppCompatActivity {
         });
         db= new Database(this);
         clList = new ArrayList<>();
-        clList = db.viewClBooks("akoyama@abc.com");
+        clList = db.viewClBooks(userId);
 
         listView = findViewById(R.id.CurrentLoanListView);
         CurrentLoanListAdapter adapter = new CurrentLoanListAdapter(this,R.layout.currentloan_list_item,clList);

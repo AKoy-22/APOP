@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Random;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> {
 
@@ -23,6 +24,14 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     List<Books> booksList;
     private LayoutInflater inflater;
     private ItemClickListener itemClickListener;
+    int[] images = {R.drawable.book_cover_1,R.drawable.book_cover_2,R.drawable.book_cover_3,
+                    R.drawable.cover02,R.drawable.cover01,R.drawable.cover03,
+                    R.drawable.cover04};
+
+    Random r = new Random();
+    int low = 0;
+    int high = 6;
+    int img = r.nextInt(high-low) + low;
 
     public BooksAdapter(Context context,List<Books> booksList){
         inflater = LayoutInflater.from(context);
@@ -47,7 +56,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
         holder.bookStatus.setText(book.getStatus());
         holder.bookYear.setText(book.getYear());
         holder.bookOwner.setText(book.getOwner());
-        holder.bookImage.setImageResource(R.drawable.book_cover_2);
+        holder.bookImage.setImageResource(images[img]);
     }
 
     @Override

@@ -84,7 +84,7 @@ public class UserAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sharedPreferences.edit().remove("userId").commit();
-                startActivity(new Intent(UserAccount.this,Login.class));
+                startActivity(new Intent(UserAccount.this,Welcome.class));
             }
         });
 

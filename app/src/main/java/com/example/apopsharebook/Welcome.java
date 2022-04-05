@@ -14,12 +14,12 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         db = new Database(this);
+
         //
         Button btnLogin = findViewById(R.id.btnLogin);
         Button signUp = findViewById(R.id.btnSignUp);
         try {
 //            db.addUser();
-//            db.manuallyAddBook();
 //            db.manuallyAddPref();
 //            db.addAdmin();
         }

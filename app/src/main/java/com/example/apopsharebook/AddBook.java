@@ -36,6 +36,7 @@ public class AddBook extends AppCompatActivity {
         EditText inpPubYear=findViewById(R.id.editBookYear);
         Spinner genre = findViewById(R.id.editBookCategory);
         Spinner status = findViewById(R.id.chooseBookStatus);
+        Spinner loc  = findViewById(R.id.chooseBookLocation);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String userId = sharedPreferences.getString("userId", "NA");
@@ -66,9 +67,9 @@ public class AddBook extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                isInserted = db.addBook(Integer.parseInt(inpIsbn.getText().toString()),
+                isInserted = db.addBook(inpIsbn.getText().toString(),
                         inpTitle.getText().toString(),genre.getSelectedItem().toString(),
-                        inpAuthor.getText().toString(),inpPublisher.getText().toString(),inpPubYear.getText().toString(),userId,status.getSelectedItem().toString(),"Location");
+                        inpAuthor.getText().toString(),inpPublisher.getText().toString(),inpPubYear.getText().toString(),userId,status.getSelectedItem().toString(),loc.getSelectedItem().toString());
                 if(isInserted){
                     Toast.makeText(AddBook.this,
                             Html.fromHtml("<big>Data is added</big>"),

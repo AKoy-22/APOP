@@ -215,38 +215,8 @@
         android:textSize="16sp"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
-
-    <TextView
-        android:id="@+id/labelUserInterest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/labelUserInterest"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <Spinner
-        android:id="@+id/userInterest"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:entries="@array/userInterest"
-        android:gravity="center"
-        android:hint="@string/EditUserAdr"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:textColor="@color/dark_gray"
-        android:textColorHighlight="@color/dark_blue"
-        android:textColorLink="@color/dark_gray"
-        android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
-
     <Button
-        android:id="@+id/btnEditSubmit"
+        android:id="@+id/btnAdminUpdateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
