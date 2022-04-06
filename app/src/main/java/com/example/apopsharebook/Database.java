@@ -180,7 +180,7 @@ public class Database extends SQLiteOpenHelper  {
         else
             return false;
     }
-    public boolean addBookToRh(int isbn,String title,String Author, String userId, double timeSpent){
+    public boolean addBookToRh(String isbn,String title,String Author, String userId, double timeSpent){
         sqLiteDatabase = this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(B_ISBN,isbn);

@@ -3,8 +3,11 @@ package com.example.apopsharebook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +32,9 @@ public class ReadingTracker extends AppCompatActivity {
         BottomNavigationView bottom_menu = findViewById(R.id.bottom_menu);
         ImageButton btnMessage = findViewById(R.id.btnMessageIcon);
         Button btnAddTracker = findViewById(R.id.btnAddTrackerBook);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String userId = sharedPreferences.getString("userId", "NA");
 
         //button event for go back main page
         go_back.setOnClickListener(v -> startActivity(new Intent(ReadingTracker.this,MainMenu.class)));
@@ -56,16 +62,32 @@ public class ReadingTracker extends AppCompatActivity {
             boolean isInserted;
             @Override
             public void onClick(View view) {
-                isInserted = db.addBookToRh(Integer.parseInt(inpIsbn.getText().toString()),
-                        inpTitle.getText().toString(), inpAuthor.getText().toString(),"akoyama@abc.com",Double.parseDouble(inpTime.getText().toString()));
-                if(isInserted){
-                    Toast.makeText(ReadingTracker.this,
-                            Html.fromHtml("<big>Data is added</big>"),
-                            Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(inpIsbn.getText()) || TextUtils.isEmpty(inpTitle.getText())||
+                        TextUtils.isEmpty(inpAuthor.getText()) || TextUtils.isEmpty(inpTime.getText())){
+                    if(TextUtils.isEmpty(inpIsbn.getText())){
+                        inpIsbn.setError("Please input ISBN");
+                    }
+                    if(TextUtils.isEmpty(inpTitle.getText())){
+                        inpTitle.setError("Please input title");
+                    }
+                    if(TextUtils.isEmpty(inpAuthor.getText())){
+                        inpAuthor.setError("Please input Author");
+                    }
+                    if(TextUtils.isEmpty(inpTime.getText())){
+                        inpTime.setError("Please input time spent");
+                    }
                 }
-                else{
-                    Toast.makeText(ReadingTracker.this,
-                            "Data is not added", Toast.LENGTH_SHORT).show();
+                else {
+                    isInserted = db.addBookToRh(inpIsbn.getText().toString(),
+                            inpTitle.getText().toString(), inpAuthor.getText().toString(), userId, Double.parseDouble(inpTime.getText().toString()));
+                    if (isInserted) {
+                        Toast.makeText(ReadingTracker.this,
+                                Html.fromHtml("<big>Data is added</big>"),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ReadingTracker.this,
+                                "Data is not added", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
