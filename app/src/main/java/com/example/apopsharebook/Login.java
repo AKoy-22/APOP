@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else{
-                            Toast.makeText(Login.this, "yo tf", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, " ", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{

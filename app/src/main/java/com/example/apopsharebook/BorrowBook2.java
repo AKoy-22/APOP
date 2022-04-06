@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,7 +29,7 @@ public class BorrowBook2 extends AppCompatActivity implements RecyclerAdapter.It
     RecyclerAdapter adapter;
     Database database;
     Cursor c;
-    String inpLoc, title, author, genre, pub, pubYear, owner, status;
+    String inpLoc, title, author, genre, pub, pubYear, owner, status, location;
     int bookId, price;
     ArrayList<String> bTitles, bAuthors, bGenres, bPub, bPubYear, bOwner, bStatus;
     ArrayList<Integer> bIds, bPrices;
@@ -72,15 +73,15 @@ public class BorrowBook2 extends AppCompatActivity implements RecyclerAdapter.It
                             bIds.add(c.getInt(7));
                             bPrices.add(c.getInt(8));
                         }
-                    } else if (c.getCount() == 0) {
+                    } else if (c.getCount() ==0) {
                         Toast.makeText(BorrowBook2.this, "No books available at the moment", Toast.LENGTH_LONG).show();
                     }
                 }
                 else {
                     //fetching the location chosen from the spinner and passing to SQL query
                     inpLoc = spnLoc.getSelectedItem().toString();
-                    inpLoc.toLowerCase();
-                    c = database.searchAvailableBooksByLoc(inpLoc);
+                    String location=inpLoc.toLowerCase();
+                    c = database.searchAvailableBooksByLoc(location); //inpLoc
                     //if SQL returns book information the the books will be displayed
                     if (c.getCount() > 0) {
                         while (c.moveToNext()) {
@@ -94,9 +95,11 @@ public class BorrowBook2 extends AppCompatActivity implements RecyclerAdapter.It
                             bIds.add(c.getInt(7));
                             bPrices.add(c.getInt(8));
                         }
-                    } else if (c.getCount() == 0) {
-                        Toast.makeText(BorrowBook2.this, "No books available in the area chosen", Toast.LENGTH_LONG).show();
-                    }
+                    }else if(c.getCount()==0){
+                        Toast toast= Toast.makeText(BorrowBook2.this, "No books available in the chosen area",Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL,0,0);
+                        toast.show();
+                   }
                 }
 
                 RecyclerView recyclerView=findViewById(R.id.recyclerView);

@@ -141,33 +141,7 @@
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <!-- label of editing email-->
-    <TextView
-        android:id="@+id/labelEditEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/labelEditEmail"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        android:textStyle="bold" />
     <!-- input of editing email -->
-    <EditText
-        android:id="@+id/editUserEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:gravity="center"
-        android:hint="@string/editUserEmail"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:text="abc@11.com"
-        android:textColor="@color/dark_gray"
-        android:textColorHighlight="@color/dark_blue"
-        android:textColorLink="@color/dark_gray"
-        android:textSize="16sp"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/labelEditAddress"
@@ -199,29 +173,7 @@
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <!-- label of editing interest-->
-    <TextView
-        android:id="@+id/labelEditInterest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/labelEditInterested"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        android:textStyle="bold" />
     <!-- spinner of editing interest -->
-    <Spinner
-        android:id="@+id/spEditInterest"
-        style="@android:style/Widget.Material.Spinner.Underlined"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:entries="@array/editUserInterest"
-        android:prompt="@string/txtBookCategoryPrompt"
-        android:spinnerMode="dialog"
-        android:textAlignment="center"
-        tools:ignore="TouchTargetSizeCheck" />
     <!-- label of editing age-->
     <TextView
         android:id="@+id/labelUserAge"
@@ -252,7 +204,7 @@
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     <!-- button of submitting -->
     <Button
-        android:id="@+id/btnEditSubmit"
+        android:id="@+id/btnAdminUpdateUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"

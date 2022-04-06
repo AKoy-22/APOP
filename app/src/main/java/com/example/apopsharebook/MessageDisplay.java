@@ -32,7 +32,7 @@ public class MessageDisplay extends AppCompatActivity {
         TextView received=findViewById(R.id.txtMsgOrignal);
         TextView header=findViewById(R.id.txtMsgHeader);
         Spinner spinner=findViewById(R.id.spnAcceptOrDec);
-        EditText reply=findViewById(R.id.edTxtReplyMsgContent);
+        EditText reply=findViewById(R.id.txtAdminMsg);
         Button btnReply=findViewById(R.id.btnSubmitReply);
         ImageButton go_back = findViewById(R.id.btnBack);
         BottomNavigationView bottom_menu = findViewById(R.id.bottom_menu);

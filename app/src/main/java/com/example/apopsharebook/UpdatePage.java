@@ -35,7 +35,7 @@ public class UpdatePage extends AppCompatActivity {
         Button btnDelBook = findViewById(R.id.btnDeleteBook);
 
         EditText inpTitle = findViewById(R.id.editBookTitle);
-        EditText inpAutor = findViewById(R.id.editBookAuthor);
+        EditText inpAutor = findViewById(R.id.editBookAuthor    );
         EditText inpYear = findViewById(R.id.editBookYear);
         EditText inpIsbn = findViewById(R.id.editBookISBN);
         EditText inpPulisher = findViewById(R.id.editBookPublisher);
@@ -91,7 +91,6 @@ public class UpdatePage extends AppCompatActivity {
                 else
                     Toast.makeText(UpdatePage.this, "record is not updated",
                             Toast.LENGTH_SHORT).show();
-
             }
         });
 

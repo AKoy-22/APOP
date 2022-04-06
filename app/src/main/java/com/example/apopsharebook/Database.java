@@ -10,14 +10,13 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Database extends SQLiteOpenHelper  {
     List<Books> booksList = new ArrayList<>();
     List<CurrentLoanList> loansList = new ArrayList<>();
     SQLiteDatabase sqLiteDatabase;
     final static String DATABASE_NAME="APOP.db";
-    final static int DATABASE_VERSION=22;
+    final static int DATABASE_VERSION=20;
 
     //----------------------------------------CREATING TABLE STRUCTURES---------------------------------------
 
@@ -104,12 +103,12 @@ public class Database extends SQLiteOpenHelper  {
         sqLiteDatabase.execSQL(createTableQuery);
 
         //create Book Table
-        createTableQuery=" CREATE TABLE "+B_TABLE+ "("+ B_BookId+ " integer,"+ B_ISBN+" text,"+
+        createTableQuery=" CREATE TABLE "+B_TABLE+ "("+ B_BookId+ " integer,"+ B_ISBN+" integer,"+
                 B_Title+" text,"
                 +B_Genre+" text,"+B_Author+" text,"+B_Publisher+" text,"+B_PubYear+" integer,"+
                 B_OwnerId+" text,"+B_Status+" text,"+B_Location+" text,"+B_Price+" integer,"+
                 "PRIMARY KEY ("+ B_BookId+ "), FOREIGN KEY ("+B_OwnerId+") REFERENCES "+U_TABLE+
-                " ("+U_UserId+") ON DELETE CASCADE)";
+                " ("+U_UserId+"))";
         sqLiteDatabase.execSQL(createTableQuery);
 
         //create Loan Table
@@ -117,7 +116,7 @@ public class Database extends SQLiteOpenHelper  {
                 L_BorrowerId+" text,"
                 +L_StartDate+" text,"+L_ReturnDate+" text,"+L_Price+" text,"+
                 "PRIMARY KEY ("+ L_LoanId+ "), FOREIGN KEY ("+L_BookId+") REFERENCES "+B_TABLE+" ("+
-                B_BookId+") ON DELETE CASCADE,  " +
+                B_BookId+"),  " +
                 "FOREIGN KEY ("+L_BorrowerId+") REFERENCES "+U_TABLE+" ("+U_UserId+"))";
         sqLiteDatabase.execSQL(createTableQuery);
 
@@ -159,7 +158,7 @@ public class Database extends SQLiteOpenHelper  {
 
     //-----------------------------------------ADD BOOK METHOD--------------------------------------
 
-    public boolean addBook(String isbn,String title,String genre,String Author, String Publisher,
+    public boolean addBook(int isbn,String title,String genre,String Author, String Publisher,
                            String PubYear,String OwnerId
     ,String status, String location){
         sqLiteDatabase = this.getWritableDatabase();
@@ -227,7 +226,7 @@ public class Database extends SQLiteOpenHelper  {
     public Cursor searchAvailableBooksByLoc(String loc){
         SQLiteDatabase sqdb=this.getWritableDatabase();
         String query="SELECT Title, Author, Genre, Publisher, PubYear, OwnerId, Status, BookId, Price FROM "+B_TABLE+" " +
-                "WHERE Location='"+loc+"'";
+                "WHERE Location='"+loc+"' AND (status='available' OR status='give away')";
         Cursor c=sqdb.rawQuery(query,null);
         return c;
     }
@@ -236,7 +235,7 @@ public class Database extends SQLiteOpenHelper  {
     public Cursor searchAllAvailableBooks(){
         SQLiteDatabase sqdb=this.getWritableDatabase();
         String query="SELECT Title, Author, Genre, Publisher, PubYear, OwnerId, Status, BookId, Price FROM "+B_TABLE+
-                " WHERE status='Available' OR status='Give-away'";
+                " WHERE status='available' OR status='give away'";
         Cursor c=sqdb.rawQuery(query,null);
         return c;
     }
@@ -245,7 +244,7 @@ public class Database extends SQLiteOpenHelper  {
     public Cursor searchBooksByTitle(String word){
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
         String query="SELECT Title, Author, Genre, Publisher, PubYear, OwnerId, Status, BookId, Price FROM Book_table " +
-                "WHERE Title LIKE "+"'%"+word+"%' AND(Status='Available' OR Status='Give-away')";
+                "WHERE Title LIKE "+"'%"+word+"%' AND(Status='available' OR Status='give away')";
         Cursor c=sqLiteDatabase.rawQuery(query,null);
         return c;
     }
@@ -368,15 +367,6 @@ public class Database extends SQLiteOpenHelper  {
 
     public List<CurrentLoanList> viewClBooks(String id){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        int[] images = {R.drawable.book_cover_1,R.drawable.book_cover_2,R.drawable.book_cover_3
-                ,R.drawable.cover02,R.drawable.cover01,R.drawable.cover03,
-                R.drawable.cover04};
-
-        Random r = new Random();
-        int low = 0;
-        int high = 6;
-        int img = r.nextInt(high-low) + low;
-
         String query = "SELECT Title,Author,Publisher,PubYear,isbn,BorrowerId,StartDate,ReturnDate,Loan_Table.Price,LoanId FROM " + B_TABLE+" JOIN "+
                 L_TABLE +" ON Book_table.BookID = Loan_table.BookId WHERE Loan_table.BorrowerId = '"+id+"'";
 
@@ -392,7 +382,7 @@ public class Database extends SQLiteOpenHelper  {
             String EndDate = c.getString(7);
             String price = c.getString(8);
             int loanId = c.getInt(9);
-            CurrentLoanList loan = new CurrentLoanList(images[img],title,Author,publisher,year,
+            CurrentLoanList loan = new CurrentLoanList(R.drawable.cover01,title,Author,publisher,year,
                     isbn,BorrowerId,StartDate,EndDate,price,loanId );
             loansList.add(loan);
         }
@@ -414,15 +404,6 @@ public class Database extends SQLiteOpenHelper  {
         int u = sqLiteDatabase.update(B_TABLE,values,"BookId=?",
                 new String[]{id});
         if(u>0)
-            return true;
-        else
-            return false;
-    }
-
-    public boolean delBook(String id){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        int d = sqLiteDatabase.delete(B_TABLE,"BookId=?",new String[]{id});
-        if(d>0)
             return true;
         else
             return false;
@@ -554,10 +535,10 @@ public class Database extends SQLiteOpenHelper  {
 
         Long result = MyDB.insert(U_TABLE, null, contentValues);
 
-        if (result>0)
-            return true;
-        else
+        if (result==1)
             return false;
+        else
+            return true;
     }
 
     //---------------check if user exists-------------------
@@ -592,20 +573,5 @@ public class Database extends SQLiteOpenHelper  {
             type = c.getString(0);
         }
         return  type;
-    }
-    public boolean addPrefs(List<String> pref,String id){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        Long result = null;
-        for(int i = 0;i<pref.size();i++){
-            contentValues.put(P_UserId,id);
-            contentValues.put(P_Preference,pref.get(i));
-            result = MyDB.insert(P_TABLE, null, contentValues);
-        }
-
-        if (result==1)
-            return false;
-        else
-            return true;
     }
 }

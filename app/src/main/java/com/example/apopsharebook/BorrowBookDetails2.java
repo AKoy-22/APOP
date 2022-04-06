@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,12 +28,13 @@ public class BorrowBookDetails2 extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_borrow_book_details2);
 
+        ImageButton go_back = findViewById(R.id.btnBack);
+        ImageButton btnMessageIcon = findViewById(R.id.btnMessageIcon);
         TextView txtTitle=findViewById(R.id.txtBDetailTitle);
         TextView txtAuthor=findViewById(R.id.txtBDetailAuthor);
         TextView txtGenre=findViewById(R.id.txtBDetailGenre);
@@ -69,7 +71,7 @@ public class BorrowBookDetails2 extends AppCompatActivity {
             txtPrice.setText("$"+price);
             bookId=getIntent().getIntExtra("bookId",0);
 
-            if(status.equals("Available") || status.equals("on loan")){
+            if(status.equals("Share") || status.equals("on loan")){
                 btnBorrow.setVisibility(View.VISIBLE);
             }
             else if(status.equals("Give-away")){
@@ -148,8 +150,8 @@ public class BorrowBookDetails2 extends AppCompatActivity {
             public void onClick(View view) {
                 writeMsg.setVisibility(View.VISIBLE);
                 btnSend.setVisibility(View.VISIBLE);
-                btnBorrow.setVisibility(View.GONE);
-                btnGiveAway.setVisibility(View.GONE);
+              //  btnBorrow.setVisibility(View.GONE);
+               // btnGiveAway.setVisibility(View.GONE);
             }
         });
       //method to submit personalized message
@@ -174,6 +176,9 @@ public class BorrowBookDetails2 extends AppCompatActivity {
               }
           }
       });
+        //button event for go back main page
+        go_back.setOnClickListener(v -> startActivity(new Intent(BorrowBookDetails2.this,MainMenu.class)));
+        btnMessageIcon.setOnClickListener(v -> startActivity(new Intent(BorrowBookDetails2.this,Message.class)));
 
         //the bottom menu bar to link the pages
         bottom_menu=findViewById(R.id.bottom_menu);

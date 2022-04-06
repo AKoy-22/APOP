@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/txtAdminCreateUser"
+            android:text="@string/btnUpdateUser"
             android:textColor="@color/dark_gray"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -226,7 +226,7 @@
         android:backgroundTint="@color/bright_blue"
         android:elevation="4dp"
         android:padding="10dp"
-        android:text="@string/btnCreateUser"
+        android:text="@string/btnUpdateUser"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"

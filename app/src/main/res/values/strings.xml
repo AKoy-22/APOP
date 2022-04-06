@@ -169,8 +169,8 @@
     <string name="txtMessageContent">Original Content: </string>
 
     <!-- admin -->
-    <string name="btnCreateUser">Register</string>
-    <string name="btnUserList">VIEW USER LIST</string>
+    <string name="btnCreateUser">Create User</string>
+    <string name="btnUserList">Delete User</string>
     <string name="labelUserId">User Id</string>
     <string name="EditUserId">Enter the user id</string>
     <string name="labelUserPw">User Password</string>
@@ -211,16 +211,8 @@
     </string-array>
 
     <string name="searchTitle">Search Result</string>
-    <string name="pref">Select preferences</string>
-    <string name="pref1">Fiction</string>
-    <string name="pref2">Sci-Fi</string>
-    <string name="pref3">Crime</string>
-    <string name="pref4">Mystery</string>
-    <string name="pref5">Self Help</string>
-    <string name="pref6">Horror</string>
-    <string name="DeleteBook">Delete Book</string>
-    <string name="title_borrow_request">Title: Borrow Request</string>
-    <string name="borrow_request_has_been_sent_from">Borrow request has been sent from</string>
-    <string name="go">GO!</string>
-    <string name="please_select_the_preferences">Please select the preferences</string>
+    <string name="txtUpdateUser">Update user</string>
+    <string name="txtMsgUser">Message user</string>
+    <string name="btnUpdateUser">Update User</string>
+    <string name="btnSelectUser">Update selected user</string>
 </resources>
